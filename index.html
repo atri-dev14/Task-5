@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore | Premium Electronics</title>
+    <!-- Modern Font: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- Link to External CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Background Decoration -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="#" class="logo">⚡ TechStore</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Shop</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="cart-btn-wrap" onclick="toggleCart()">
+                <span style="font-size: 1.2rem;">🛒</span>
+                <span class="cart-badge" id="cartCount">0</span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <div class="hero-content hidden">
+            <h1>Next Gen Tech <br> For The Future.</h1>
+            <p>Upgrade your lifestyle with our premium selection of laptops, phones, and smart accessories. Quality meets performance.</p>
+            <a href="#products" class="btn btn-primary">Shop Collection</a>
+        </div>
+        <div class="hero-image hidden">
+            <!-- Using Emoji as placeholder for 3D Illustration -->
+            <div style="font-size: 15rem; text-align: center; filter: drop-shadow(0 20px 30px rgba(79, 70, 229, 0.4));">🚀</div>
+        </div>
+    </section>
+
+    <!-- Products -->
+    <section id="products" class="container">
+        <div class="section-header hidden">
+            <span>New Arrivals</span>
+            <h2>Trending Products</h2>
+        </div>
+
+        <div class="controls hidden">
+            <input type="text" id="searchInput" class="search-input" placeholder="🔍 Search gadgets..." onkeyup="filterProducts()">
+            <select id="categoryFilter" class="category-select" onchange="filterProducts()">
+                <option value="all">All Categories</option>
+                <option value="laptops">Laptops</option>
+                <option value="phones">Phones</option>
+                <option value="accessories">Accessories</option>
+            </select>
+        </div>
+
+        <div class="products-grid" id="productsGrid">
+            <!-- Products injected via JS -->
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container about-grid">
+            <div class="about-image hidden">
+                <div style="font-size: 10rem; text-align: center;">🏢</div>
+            </div>
+            <div class="about-text hidden">
+                <span>Who We Are</span>
+                <h2>Empowering Your Digital Life</h2>
+                <p style="color: #64748b; margin-bottom: 1rem;">Founded in 2025, TechStore has quickly become the go-to destination for tech enthusiasts. We believe in quality, transparency, and exceptional customer service.</p>
+                
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h4>15k+</h4>
+                        <p>Happy Customers</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>100%</h4>
+                        <p>Quality Guarantee</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>24/7</h4>
+                        <p>Expert Support</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>Free</h4>
+                        <p>Shipping Worldwide</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="container contact-section">
+        <div class="contact-wrapper hidden">
+            <div class="contact-info">
+                <h2>Get In Touch</h2>
+                <p>Have questions? We are here to help you choose the best gadget for your needs.</p>
+                
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <span>📍</span> 910 A/2, Tech Avenue, Bengaluru
+                    </div>
+                    <div class="contact-item">
+                        <span>📧</span> support@techstore.com
+                    </div>
+                    <div class="contact-item">
+                        <span>📞</span> +91 9191919191
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <form onsubmit="handleContact(event)">
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" class="form-control" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" class="form-control" placeholder="john@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea class="form-control" rows="4" placeholder="How can we help?" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <p>&copy; 2025 TechStore Inc. All rights reserved.</p>
+    </footer>
+
+    <!-- Cart Drawer -->
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <span class="close-cart" onclick="toggleCart()">&times;</span>
+        </div>
+        <div class="cart-body" id="cartItems">
+            <p class="empty-msg">Your cart is empty.</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total-row">
+                <span>Total</span>
+                <span id="cartTotal">$0.00</span>
+            </div>
+            <button class="btn btn-primary full-width" onclick="checkout()">Checkout Now</button>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">Item added to cart!</div>
+
+    <!-- Link to External JS -->
+    <script src="script.js"></script>
+</body>
+</html>
